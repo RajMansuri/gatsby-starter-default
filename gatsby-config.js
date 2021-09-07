@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -30,6 +32,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `4fll3wuk1s2p`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        host: `preview.contentful.com`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

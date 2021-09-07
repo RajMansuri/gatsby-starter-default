@@ -1,0 +1,68 @@
+.article-title {
+  position: relative;
+  margin-top: -8px;
+  padding-bottom: 52px;
+}
+.article-title .sub-title {
+  padding-bottom: 26px;
+}
+
+.article-title h2 {
+  color: #0c1529;
+  font-size: 40px;
+  line-height: 1.3em;
+  font-weight: 800;
+  text-transform: capitalize;
+  margin: 0 0 18px;
+}
+
+.article-card {
+  box-shadow: 0px 20px 50px 0px rgb(12 21 41 / 10%);
+  border-radius: 0px;
+}
+.article-card > .card > .card-img-top {
+  transform: scale(1);
+  transition: all 500ms ease-in-out;
+}
+.article-card > .card:hover > .card-img-top {
+  transform: scale(1.2);
+}
+
+.article-card .card {
+  overflow: hidden;
+  border-radius: 0px;
+  border: 0px;
+}
+.article-card .card::after {
+  background-color: #ac2c19;
+  opacity: 0.9;
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  transition: all 0.5s ease-in-out 0.1s;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  z-index: 1;
+}
+
+.article-card .card:hover::after {
+  transform: scaleY(1);
+}
+.article-card .card-body a {
+  background-color: #0c1529;
+}
+
+.article-card .card-body a::before {
+  z-index: -1;
+}
+.article-card .card-body a:hover::before {
+  background-color: #da3c22;
+}
+
+.article-card .card-body .card-title:hover {
+  color: #da3c22;
+  cursor: pointer;
+}

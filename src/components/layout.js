@@ -1,55 +1,66 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import * as React from "react"
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
+import "../Styles/global.css";
 import { useStaticQuery, graphql } from "gatsby"
-
-import Header from "./header"
-import "./layout.css"
-
-const Layout = ({ children }) => {
+import Footer from "./Footer.js";
+import Header from "./Header.js";
+export default function Layout({ children }) {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+  query MyQuery {
+    allContentfulHomePage(filter: {slug: {eq: "/"}}) {
+      nodes {
+        topHeader {
+          contactLinks {
+            id
+            link
+            logo
+            text
+          }
+          socialLinks {
+            id
+            link
+            logo
+          }
         }
+        navbar {
+          brandLogoDark {
+            file {
+              url
+            }
+          }
+          brandLogoLight {
+            file {
+              url
+            }
+          }
+          menuLinks {
+            isMulti
+            label
+            id
+            redirectTo
+            options {
+              isMulti
+              label
+              id
+              redirectTo
+            }
+          }
+        }
+        slug
       }
     }
+  }
   `)
-
+  console.log(data.allContentfulHomePage.nodes, 'nodes');
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+    <div className='layout-container' >
+      <Header header={data.allContentfulHomePage.nodes[0]} />
+      <main>{children}</main>
+      <Footer />
+    </div>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
+// Layout.propTypes = {
+//   children: PropTypes.node.isRequired,
+// }
